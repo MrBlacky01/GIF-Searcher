@@ -56,8 +56,18 @@ public class MainActivity extends AppCompatActivity {
         gifAdapter = new GifAdapter(this);
 
         recyclerView.setAdapter(gifAdapter);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(
-                2, StaggeredGridLayoutManager.VERTICAL));
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            recyclerView.setLayoutManager(new StaggeredGridLayoutManager(
+                    1, StaggeredGridLayoutManager.VERTICAL));
+        }
+        else {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(
+                        2, StaggeredGridLayoutManager.VERTICAL));
+            }
+
+        }
+
 
         if (checkInternetConnection()) {
             new GetTrendingTask().execute();
