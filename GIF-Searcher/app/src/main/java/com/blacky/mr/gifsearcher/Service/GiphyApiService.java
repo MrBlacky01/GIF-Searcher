@@ -13,34 +13,30 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GiphyApiService {
 
-    static String baseUrl = "http://api.giphy.com";
-    static String giphyApiKey = "dc6zaTOxFJmzC";
-    static  String keyParametr = "api_key";
+    private static String baseUrl = "http://api.giphy.com";
+    private static String giphyApiKey = "dc6zaTOxFJmzC";
+    private static  String keyParametr = "api_key";
 
 
     public static IGiphyApiService create() {
 
-        OkHttpClient client = new OkHttpClient();
-        client.interceptors().add(new Interceptor() {
-            @Override
-            public Response intercept(Interceptor.Chain chain) throws IOException {
-                Request request = chain.request();
-                HttpUrl url = request.url().
-                        newBuilder().
-                        addQueryParameter(keyParametr, giphyApiKey).
-                        build();
-                request = request.newBuilder().url(url).build();
-                return chain.proceed(request);
-            }
-        });
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
+            return new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .client(client)
-                .build();
+                .client(new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request request = chain.request();
+                        HttpUrl url = request.url().newBuilder().
+                                addQueryParameter(keyParametr,giphyApiKey).
+                                build();
+                        request = request.newBuilder().url(url).build();
+                        return chain.proceed(request);
+                    }
+                }).build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(IGiphyApiService.class);
 
-        return retrofit.create(IGiphyApiService.class);
     }
 
 }

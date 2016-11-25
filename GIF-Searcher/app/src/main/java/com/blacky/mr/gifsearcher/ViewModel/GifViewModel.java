@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.blacky.mr.gifsearcher.Models.Data;
+import com.blacky.mr.gifsearcher.Models.ApplicationModels.GifData;
 import com.blacky.mr.gifsearcher.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -15,11 +15,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 public class GifViewModel {
 
     private Context mContext;
-    private Data mGifResponse;
+    private GifData mGifData;
 
-    public GifViewModel(Context context, Data gifResponse) {
+    public GifViewModel(Context context, GifData gifData) {
         mContext = context;
-        mGifResponse = gifResponse;
+        mGifData = gifData;
     }
 
     @BindingAdapter({"bind:gifUrl"})
@@ -28,16 +28,17 @@ public class GifViewModel {
         Glide.with(view.getContext())
                 .load(gifUrl)
                 .asBitmap()
+                .placeholder(R.drawable.orange_background)
                 .into(view);
     }
 
     public String getGifUrl(){
-        return mGifResponse.getGifs().getFixHeigthStill().getUrl();
+        return mGifData.getImageUrl();
     }
 
     private String getGifVideoUrl(){
-        return mGifResponse.getGifs().getFixHeigth().getUrl();
-    }
+        return mGifData.getGifUrl();
+}
 
     public View.OnClickListener onClickGifImage() {
         return new View.OnClickListener() {
