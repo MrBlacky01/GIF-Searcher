@@ -11,5 +11,10 @@
         app:showAsAction="always"
         android:title="@string/search_name"/>
 
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_home_white_24dp"
+        app:showAsAction="ifRoom"
+        android:title="@string/Home_name"/>
 
 </menu>

@@ -58,15 +58,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(gifAdapter);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(
                 2, StaggeredGridLayoutManager.VERTICAL));
-        /*if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-            recyclerView.setLayoutManager(new StaggeredGridLayoutManager(
-                    2, StaggeredGridLayoutManager.VERTICAL));
-        }
-        else {
-            recyclerView.setLayoutManager(new StaggeredGridLayoutManager(
-                    3, StaggeredGridLayoutManager.HORIZONTAL));
-        }*/
-
 
         if (checkInternetConnection()) {
             new GetTrendingTask().execute();
@@ -89,6 +80,28 @@ public class MainActivity extends AppCompatActivity {
 
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // Handle action bar item clicks.
+        switch (item.getItemId()) {
+            case R.id.search:
+                return true;
+
+            case R.id.action_home:
+                if (checkInternetConnection()) {
+                    new GetTrendingTask().execute();
+                }
+                else{
+                    Snackbar.make(recyclerView, R.string.no_internet, Snackbar.LENGTH_SHORT).show();
+                }
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
