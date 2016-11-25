@@ -8,6 +8,6 @@ Using the Giphy API, create an app to be able to search for GIFs.
 	2.Navigate to the folder you want to put the project in
 		2.paste in the URL with the git clone command: git clone https://github.com/MrBlacky01/GIF-Searcher.git
 
-*Or you cand download [apk-file]:(https://drive.google.com/open?id=0ByV839FvXofHcnZTdWhuVnlzU00)
+*Or you cand download [apk-file](https://drive.google.com/open?id=0ByV839FvXofHcnZTdWhuVnlzU00)
 
 
