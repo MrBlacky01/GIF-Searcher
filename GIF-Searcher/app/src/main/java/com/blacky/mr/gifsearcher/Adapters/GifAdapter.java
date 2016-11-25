@@ -6,7 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.blacky.mr.gifsearcher.Models.Data;
+
+import com.blacky.mr.gifsearcher.Models.ApplicationModels.GifData;
 import com.blacky.mr.gifsearcher.R;
 import com.blacky.mr.gifsearcher.ViewModel.GifViewModel;
 import com.blacky.mr.gifsearcher.databinding.GifItemBinding;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class GifAdapter  extends RecyclerView.Adapter<GifAdapter.ViewHolder>{
 
-    private List<Data> mDataList;
+    private List<GifData> mDataList;
     private Context mContext;
 
     public GifAdapter(Context context) {
@@ -46,7 +47,7 @@ public class GifAdapter  extends RecyclerView.Adapter<GifAdapter.ViewHolder>{
         return mDataList.size();
     }
 
-    public void addGifList(List<Data> DataList){
+    public void addGifList(List<GifData> DataList){
         mDataList = DataList;
         notifyDataSetChanged();
     }
