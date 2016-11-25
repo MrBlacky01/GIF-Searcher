@@ -1,30 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/card_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    card_view:cardCornerRadius="10dp"
-    card_view:cardElevation="5dp"
-    android:layout_margin="5dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+
+<data>
+    <variable name="viewModel" type="com.blacky.mr.gifsearcher.ViewModel.GifViewModel" />
+</data>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardElevation="5dp"
+        android:layout_margin="5dp">
 
-        <ImageView
-            android:id="@+id/gif_container"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"/>
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/play_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/play_icon"/>
-    </RelativeLayout>
-</android.support.v7.widget.CardView>
+            <ImageView
+                android:id="@+id/gif_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:gifUrl="@{viewModel.gifUrl}"
+                android:onClick="@{viewModel.onClickGifImage}"/>
+
+            <ImageView
+                android:id="@+id/play_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/play_icon"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</layout>
