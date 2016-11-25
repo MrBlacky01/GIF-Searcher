@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GIF Searcher</string>
+
+    <string name="search_name">Search</string>
+    <string name="Home_name">Home</string>
+    <string name="no_internet">No Internet connection</string>
 </resources>
